@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WarehouseDB" Class="WarehouseDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-37FMHET\MSSQLSERVER_C1;Initial Catalog=WarehouseDB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="WarehouseDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Brand" Member="Brands">
+    <Type Name="Brand">
+      <Column Name="BrandCode" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BrandName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="BrandImage" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Category" Member="Categories">
+    <Type Name="Category">
+      <Column Name="CateCode" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CateName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="CateImage" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Color" Member="Colors">
+    <Type Name="Color">
+      <Column Name="ColorCode" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ColorName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ColorRGB" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Product" Member="Products">
+    <Type Name="Product">
+      <Column Name="PrdCode" Type="System.String" DbType="NChar(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PrdName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UnitCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CateCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BrandCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ShortDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FullDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ColorCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Supplier" Member="Suppliers">
+    <Type Name="Supplier">
+      <Column Name="SupplierCode" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SupplierName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="SupplierPhone" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="SupplierEmail" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SupplierAddress" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Unit" Member="Units">
+    <Type Name="Unit">
+      <Column Name="UnitCode" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.sp_get_all_product" Method="sp_get_all_product">
+    <ElementType Name="sp_get_all_productResult">
+      <Column Name="PrdCode" Type="System.String" DbType="NChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="PrdName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ColorCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ShortDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FullDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UnitCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UnitName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="CateCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CateName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="BrandCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BrandName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_get_detail_product" Method="sp_get_detail_product">
+    <Parameter Name="CODE" Parameter="cODE" Type="System.String" DbType="NChar(5)" />
+    <ElementType Name="sp_get_detail_productResult">
+      <Column Name="PrdCode" Type="System.String" DbType="NChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="PrdName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ColorCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ShortDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FullDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UnitCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UnitName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="CateCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CateName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="BrandCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BrandName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_get_all_product_by_category" Method="sp_get_all_product_by_category">
+    <Parameter Name="CODE" Parameter="cODE" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_get_all_product_by_categoryResult">
+      <Column Name="PrdCode" Type="System.String" DbType="NChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="PrdName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ColorCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ShortDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FullDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UnitCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UnitName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="CateCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CateName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="BrandCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BrandName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_get_all_product_by_brand" Method="sp_get_all_product_by_brand">
+    <Parameter Name="CODE" Parameter="cODE" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_get_all_product_by_brandResult">
+      <Column Name="PrdCode" Type="System.String" DbType="NChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="PrdName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ColorCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ShortDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FullDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UnitCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UnitName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="CateCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CateName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="BrandCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BrandName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>
